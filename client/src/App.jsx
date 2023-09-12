@@ -17,7 +17,8 @@ function App() {
   const getTodos = async () => {
     try {
       const data = await fetchAPI.get()
-      console.log(data);
+      setAllTodos(data)
+      console.log(allTodos);
     } catch (error) { 
       console.error(error)
     }
