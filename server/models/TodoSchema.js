@@ -1,14 +1,15 @@
 const mongoose = require('mongoose')
 
 const TodoSchema = new mongoose.Schema({
-    todo: {
+    text: {
         type: String,
         required: true
     },
-    state: {
+    isCompleted: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     }
 })
 
-module.exports = new mongoose.model('Todo', TodoSchema)
+module.exports = new mongoose.model("Todo", TodoSchema)

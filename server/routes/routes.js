@@ -1,10 +1,10 @@
 const express = require('express')
-const route = express.Router()
+const router = express.Router()
 
-const Todo = require('../models/todoSchema')
+const Todo = require('../models/TodoSchema')
 
-// GET - GET ROUTE
-route.get('/', async (req, res) => {
+// GET - Request to show all Todos
+router.get('/', async (req, res) => {
     try {
         const todos = await Todo.find()
         res.status(200).send(todos)
@@ -12,29 +12,26 @@ route.get('/', async (req, res) => {
         res.status(500).send({ message: error.message })
     }
 })
-
-// POST - POST ROUTE
-route.post('/add', async (req, res) => {
+// POST - Request to add a new Todo
+router.post('/', async (req, res) => {
     try {
         const newTodo = await Todo.create(req.body)
         res.status(201).send(newTodo)
     } catch (error) {
-        res.status(401).send({ message: 'Please do not leave the Document empty', errorMessage: error.message })
+        res.status(401).send({ message: 'Please do not send empty Form', ErrorMessage: error.message })
     }
 })
-
-// PACTH - PACTH ROUTE
-route.patch('/edit/:id', async (req, res) => {
+// PATCH - Request to edit an existing Todo
+router.patch('/:id', async (req, res) => {
     try {
-        const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body)
-        res.status(200).send(updatedTodo)
+        const editedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body)
+        res.status(200).send(editedTodo)
     } catch (error) {
         res.status(500).send({ message: error.message })
     }
 })
-
-// DELETE - DELETE ROUTE
-route.delete('/delete/:id', async (req, res) => {
+// DELETE - Request to delete an existing Todo
+router.delete('/:id', async (req, res) => {
     try {
         const deletedTodo = await Todo.findByIdAndRemove(req.params.id, req.body)
         res.status(200).send(deletedTodo)
@@ -43,4 +40,4 @@ route.delete('/delete/:id', async (req, res) => {
     }
 })
 
-module.exports = route
+module.exports = router

@@ -1,0 +1,20 @@
+POST http://localhost:3001/api
+Content-Type: application/json
+
+{
+    "text":"TestTODO 12314487"
+}
+
+### 
+GET http://localhost:3001/api
+
+###
+PATCH http://localhost:3001/api/6500ca2be277368191e09f8e
+Content-Type: application/json
+
+{
+    "isCompleted": true
+}
+
+###
+DELETE  http://localhost:3001/api/6500ca2be277368191e09f8e
