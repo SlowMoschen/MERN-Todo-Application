@@ -12,12 +12,12 @@ class FetchWrapper {
         return this._send("PATCH", endpoint, body);
     }
 
-    post(endpoint, body) {
+    post(endpoint = '', body) {
         return this._send("POST", endpoint, body);
     }
 
-    delete(endpoint, body) {
-        return this._send("DELETE", endpoint, body);
+    delete(endpoint) {
+        return this._send("DELETE", endpoint);
     }
 
     _send(method, endpoint, body) {

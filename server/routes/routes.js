@@ -12,6 +12,17 @@ router.get('/', async (req, res) => {
         res.status(500).send({ message: error.message })
     }
 })
+
+// GET - Request to get one specific Todo
+router.get('/:id', async (req, res) => {
+    try {
+        const todo = await Todo.findById(req.params.id)
+        res.status(200).send(todo)
+    } catch (error) {
+        res.status(404).send({ message: 'Could not find Todo', ErrorMessage: error.message})
+    }
+})
+
 // POST - Request to add a new Todo
 router.post('/', async (req, res) => {
     try {
